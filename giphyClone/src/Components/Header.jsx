@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {HiEllipsisVertical, HiMiniBars3BottomRight} from "react-icons/hi2"
+import { GifState } from "../context/context";
 
 const Header = () => {
     const [categories,setCategories] = useState([])
     const [showcategories,setShowCategories] = useState(false)
+    const {gf,filter,setFilter,favorites} = GifState()
+
+    const fetchGifCategories = async () => {
+        const {data} = await gf.categories()
+        setCategories(data)
+    }
+
+    useEffect(() => {
+        fetchGifCategories()
+    },[])
 
     return (
         <nav>
@@ -16,9 +27,11 @@ const Header = () => {
                     </h1>
                 </Link>
                 <div className="font-bold text-md flex gap-2 items-center">
-                <Link className="px-4 py-1 hover:gradient1 border-b-4 hidden lg:block">
-                    Reactions
-                </Link>
+                    {categories.slice(0,5)?.map((category)=>{
+                        return (<Link key={category.name} to={`/${category.name_encoded}`} className="px-4 py-1 hover:gradient1 border-b-4 hidden lg:block">
+                            {category.name}
+                    </Link>)
+                    })}
                 <button onClick={() => setShowCategories(!showcategories)}>
                     <HiEllipsisVertical size={35} className={`py-0.5 hover:gradient1 
                         ${showcategories? "gradient1" : ""} border-b-4 hidden lg:block`}/>
