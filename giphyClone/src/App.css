@@ -7,3 +7,15 @@
       @apply bg-gradient-to-r from-teal-600 via-blue-600 to-pink-600;
   }
 }
+
+@layer utilities{
+  .gradient2{
+    @apply bg-gradient-to-tr from-pink-600 to-pink-500
+  }
+}
+
+@layer utilities{
+  .darker1{
+    @apply bg-gray-400
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { GifState } from '../context/context'
 import Gif from '../Components/gif'
+import FilterGif from '../Components/filter-gif'
 
 const Home = () => {
   const {gf,gifs,setGifs,filter} = GifState()
@@ -23,7 +24,7 @@ const Home = () => {
             alt="earth banner"
             className='mt-2 rounded w-full'>
       </img>
-      {/*<FilterGif/>*/}
+      <FilterGif showTrending/>
       <div className='columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2'>
         {gifs.map((gif) => {
           return(<Gif gif={gif} key={gif.title}/>)
