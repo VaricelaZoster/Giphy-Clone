@@ -24,4 +24,30 @@
   .divider{
     @apply w-full h-0.5 my-6 bg-gray-800
   }
+  .animate-slide-in {
+    animation: slideIn 0.5s forwards;
+  }
+  
+  .animate-slide-out {
+    animation: slideOut 0.5s forwards;
+  }
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(150%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
